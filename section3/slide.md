@@ -551,3 +551,46 @@ def fibonacci(n):
 ---
 
 ### 課題: 名前やhelpが崩れる...!
+
+これもコードで...!
+
+---
+
+#### なぜ？
+
+- `trace`は`wrapper`という関数を定義して返している。
+  - 返す関数のオブジェクトのメタデータは当然`wrapper`のもの
+- デコレータを`trace`に適用すると、`fibonacci`という識別子を`wrapper`の指すオブジェクトに向けるだけ
+  - もともとの`fibonacci`のメタデータはすべて上書きされる
+
+---
+
+### functools.wrapsを使いましょう
+
+functools.wrapsでデコレートすれば、メタデータを全て複製してくれる.
+
+↓イメージ
+```python
+def wraps(func):
+    def decorator(wrapper):
+        wrapper.__name__ = func.__name__
+        wrapper.__doc__ = func.__doc__
+        wrapper.__module__ = func.__module__
+        wrapper.__qualname__ = func.__qualname__
+        wrapper.__annotations__ = func.__annotations__
+        wrapper.__dict__.update(func.__dict__)
+        return wrapper
+    return decorator
+```
+
+---
+
+#### 使用例
+
+コードで...
+
+
+---
+
+### まとめ
+
