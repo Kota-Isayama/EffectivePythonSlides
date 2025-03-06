@@ -1,4 +1,5 @@
 import functools
+import pickle
 
 
 def trace(func):
@@ -35,3 +36,4 @@ if __name__ == "__main__":
     print(fibonacci.__name__)
     print(fibonacci.__dict__)
     print(help(fibonacci))
+    pickle.dumps(fibonacci)

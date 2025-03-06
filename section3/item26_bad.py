@@ -1,3 +1,6 @@
+import pickle
+
+
 def trace(func):
   def wrapper(*args, **kwargs): # 関数traceの中で関数を定義!
     # 元の関数を呼び出す（中身を書き換えない）
@@ -31,3 +34,4 @@ if __name__ == "__main__":
     print(fibonacci.__name__)
     print(fibonacci.__dict__)
     print(help(fibonacci))
+    pickle.dumps(fibonacci)
